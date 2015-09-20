@@ -1,0 +1,32 @@
+/dist
+/build
+/venv
+*.egg
+*.egg-info
+*.pyc
+db.sqlite3
+celerybeat-schedule
+
+/.idea
+/.project
+/.pydevproject
+/.settings
+/.sublime
+/docs
+
+nodeconductor/server/settings.py
+nodeconductor_plus
+ncplus
+
+# Editor artifacts
+# vim
+*.sw*
+
+# Testing artifacts
+
+TEST-*.xml
+
+# documentation
+docs/_build/
+
+/static_files
