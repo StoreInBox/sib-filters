@@ -1,7 +1,7 @@
-from django.db import models as django_models
+from django.apps import apps
 
 from . import models
 
 
 def get_filter_models():
-    return [m for m in django_models.get_models() if isinstance(m, models.FilterMixin)]
+    return [model for model in apps.get_models() if issubclass(model, models.FilterMixin)]

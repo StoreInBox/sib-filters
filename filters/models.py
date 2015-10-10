@@ -141,3 +141,6 @@ class IntervalsFilterMixin(FilterMixin):
         except (IndexError, ValueError):
             raise ValidationError('Intervals are inputed in wrong format')
         return super(IntervalsFilterMixin, self).clean()
+
+
+# class CharacteristicFilterMixin()
