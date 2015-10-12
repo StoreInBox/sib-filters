@@ -1,9 +1,0 @@
-<div class="filter-type choices">
-    <ul data-filter-type="{{ filter.get_type }}">
-        {% for interval in filter.get_formatted_intervals %}
-            <li>
-                <span class="filter-item" data-role="filter-item" data-filter-field-name="{{ filter.get_item_prefix }}-{{ forloop.counter0 }}">{{ interval.0 }} - {{ interval.1 }}</span>
-            </li>
-        {% endfor %}
-    </ul>
-</div>

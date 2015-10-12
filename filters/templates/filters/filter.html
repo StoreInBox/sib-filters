@@ -1,9 +1,0 @@
-{# TODO: refactor classes names in filter files: make them more common. #}
-
-{% if filter.get_type == 'numeric' %}
-    {% include "filters/numeric_filter.html" %}
-{% elif filter.get_type == 'choices' %}
-    {% include "filters/choices_filter.html" %}
-{% elif filter.get_type == 'intervals' %}
-    {% include "filters/intervals_filter.html" %}
-{% endif %}

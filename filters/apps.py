@@ -11,13 +11,29 @@ class FiltersConfig(AppConfig):
     verbose_name = _('Filters')
 
     def ready(self):
-        from . import utils, handlers, settings
+        from . import models, handlers, settings
 
-        settings.init_external_models()
-
-        for model in utils.get_filter_models():
+        for index, model in enumerate(models.FilterMixin.get_all_models()):
             signals.post_save.connect(
-                handlers.auto_update_filter,
+                handlers.update_filter_on_creation,
                 sender=model,
-                dispatch_uid='filters.handlers.auto_update_filter',
+                dispatch_uid='filters.handlers.update_filter_on_creation_{}_{}'.format(model.__name__, index),
             )
+
+        signals.post_save.connect(
+            handlers.update_filter_on_product_change,
+            sender=settings.external_models.Product,
+            dispatch_uid='filters.handlers.update_filter_on_product_save',
+        )
+
+        signals.post_delete.connect(
+            handlers.update_filter_on_product_change,
+            sender=settings.external_models.Product,
+            dispatch_uid='filters.handlers.update_filter_on_product_delete',
+        )
+
+        signals.post_save.connect(
+            handlers.create_default_filters_for_category,
+            sender=settings.external_models.Category,
+            dispatch_uid='filters.handlers.create_default_filters_for_category',
+        )
