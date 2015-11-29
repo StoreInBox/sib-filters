@@ -2,5 +2,5 @@ class FilterError(Exception):
     pass
 
 
-class FilterSettingsError(Exception):
+class FilterSettingsError(FilterError):
     pass

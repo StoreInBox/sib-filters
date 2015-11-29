@@ -38,7 +38,8 @@ class FilterMixin(models.Model):
 
     @classmethod
     def get_default_creation_kwargs(cls):
-        raise NotImplemented('Method "get_default_creation_kwargs" has to be implemented for default category filters')
+        raise NotImplementedError(
+            'Method "get_default_creation_kwargs" has to be implemented for default category filters')
 
     @classmethod
     def get_category_filters(cls, category):
@@ -57,7 +58,7 @@ class FilterMixin(models.Model):
         return self.__class__.__name__.lower()
 
     def get_field(self):
-        raise NotImplemented()
+        raise NotImplementedError()
 
     # Update-related methods:
     def get_queryset(self):
@@ -67,7 +68,7 @@ class FilterMixin(models.Model):
 
     def base_update(self, queryset):
         """ Execute filter update based on products from queryset """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def update(self, deleted_product=None):
         """ Main update method """
@@ -80,15 +81,15 @@ class FilterMixin(models.Model):
     # filtering
     def get_filter_query(self, **kwargs):
         """ Get filter query for concrete field """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def get_filter_kwargs(self, request):
         """ Get kwargs for filter query from request """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def is_active(self, request):
         """ Return true if there are some values related to filter in request """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def filter(self, queryset, request):
         """ Filter queryset based on values from request """
@@ -100,7 +101,7 @@ class FilterMixin(models.Model):
 
     # XXX: Other methods. Do I really need them?
     def get_type(self):
-        raise NotImplemented()
+        raise NotImplementedError()
 
 
 class NumericFilterMixin(FilterMixin):
@@ -204,7 +205,7 @@ class IntervalsFilterMixin(FilterMixin):
         return query
 
     def base_update(self, queryset):
-        raise NotImplemented('Intervals filter does not support auto update')
+        raise NotImplementedError('Intervals filter does not support auto update')
 
     def clean(self):
         if self.is_auto_update:
